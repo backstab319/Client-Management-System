@@ -1,0 +1,7 @@
+[22-Sep-2018 18:22:32 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/theback1/public_html/client_data/client_data.php on line 69
+[22-Sep-2018 18:22:35 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/theback1/public_html/client_data/client_data.php on line 69
+[22-Sep-2018 18:23:08 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/theback1/public_html/client_data/client_data.php on line 69
+[22-Sep-2018 18:23:11 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/theback1/public_html/client_data/client_data.php on line 69
+[22-Sep-2018 18:24:11 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/theback1/public_html/client_data/client_data.php on line 69
+[22-Sep-2018 18:24:12 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/theback1/public_html/client_data/client_data.php on line 69
+[22-Sep-2018 18:42:01 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/theback1/public_html/client_data/client_data_deleter.php on line 26

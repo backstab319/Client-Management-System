@@ -1,0 +1,9 @@
+[22-Sep-2018 21:03:31 UTC] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home/theback1/public_html/emp_data/emp_data_updater.php on line 53
+[22-Sep-2018 21:08:44 UTC] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home/theback1/public_html/emp_data/emp_data_updater.php on line 53
+[22-Sep-2018 21:09:48 UTC] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home/theback1/public_html/emp_data/emp_data_updater.php on line 53
+[22-Sep-2018 21:09:59 UTC] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home/theback1/public_html/emp_data/emp_data_updater.php on line 53
+[22-Sep-2018 21:14:01 UTC] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home/theback1/public_html/emp_data/emp_data_updater.php on line 53
+[22-Sep-2018 21:20:26 UTC] PHP Catchable fatal error:  Object of class mysqli_result could not be converted to string in /home/theback1/public_html/emp_data/emp_data_updater.php on line 55
+[22-Sep-2018 21:22:48 UTC] PHP Parse error:  syntax error, unexpected '"', expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/theback1/public_html/emp_data/emp_data_updater.php on line 53
+[22-Sep-2018 21:23:32 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/theback1/public_html/emp_data/emp_data_updater.php on line 53
+[22-Sep-2018 21:56:20 UTC] PHP Parse error:  syntax error, unexpected '$conn' (T_VARIABLE) in /home/theback1/public_html/emp_data/emp_data.php on line 95

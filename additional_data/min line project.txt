@@ -1,0 +1,1627 @@
+?php
+    if($_POST["s"]){
+        $name = $_POST["username"];
+        setcookie("user",$name,time()+(14400),'/');}?>
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Login page</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body>
+<div class="container menu">
+    <div class="page-header">
+        <h1> Login: </h1></div></div>
+<div class="container menu">
+    <form method="POST" action="/index.php">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" placeholder="Username" maxlength="30" autofocus><br/>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" placeholder="Password" maxlength="30"><br/>
+        <select name="sel" required>
+            <option value="manager">Manager</option>
+            <option value="emp">Employee</option>
+            <option value="client">Client</option>
+            <option value="testclient">Test Client</option>
+        </select>
+        <input type="submit" name="s" value="Login!"></div></form>
+        <div class="container menu">
+            <h3>Or sign up for free to have a look!</h3>
+            <a href="/testclient/signup.php">Sign me up!</a>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script><?php
+        if($_POST["s"]){
+            checker();}
+        function checker(){
+            $username = "u463135857_yxuq";
+            $password = "u463135857_yxuq";
+            $address = "localhost";
+            $dbname = "u463135857_yxuq";
+            $name=$_POST["username"];
+            $pass = $_POST["password"];
+            $type = $_POST["sel"];
+            global $name;
+            $conn = new mysqli($address ,$username ,$password ,$dbname);
+            if($conn->connect_error){
+                die("Failed to connect to the server!" . $conn->connect_error);}
+            $sql = "SELECT * FROM login_details WHERE user_id='$name'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            if($pass == $row["password"] && $type == $row["user_type"]){
+                echo "The entered password is correct!";
+                if($row["user_type"] == "manager"){
+                    echo "<script type='text/javascript'>document.location = 'manager.php';</script>";
+                    exit();}elseif($row["user_type"] == "emp"){
+                    echo "<script type='text/javascript'>document.location = 'emp.php';</script>";
+                    exit();}elseif($row["user_type"] == "client"){
+                    echo "<script type='text/javascript'>document.location = 'client.php';</script>";
+                    exit();}elseif($row["user_type"] == "testclient"){
+                    echo "<script type='text/javascript'>document.location = '/testclient/testclient.php';</script>";
+                    exit();}}else{
+                echo "The entered password is incorrect! Please try again!";}
+            $conn->close();}?></div></body></html>
+Emp.php
+<!DOCTYPE html>
+<html lang="en"><head><title>Welcome to Pages</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#009a9f"></head><body>
+    <div class="container menu"><?php
+    if(!$_COOKIE["user"]){
+        echo "Please login!";
+        exit();}
+        echo "<h2>Welcome " . $_COOKIE["user"] . "!</h2>";?></div>
+    <div class="container menu">
+    <p>These links will take you to the specified pages which contain the data. You can perform all the operations that you need.</p></div>
+    <div class="container menu">
+        <div class="container">
+    <a href="/client_data/client_data.php">Client data</a></div>
+        <div class="container">
+    <a href="/additional_data/additional_data(emp).html">Available additional data</a></div>
+<div class="container">
+    <a href="/testclient/testclient_display.php">Test clients</a></div>
+<div class="container">
+    <a href="/allot(emp).php">Allot</a></div>
+<div class="container">
+    <a href="/talk.php">Talk</a></div>
+<div class="container">
+    <a href="/change.php">Change Password</a></div></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Client.php
+<!DOCTYPE html><?php
+    $user = $_COOKIE["user"];
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $address = "localhost";
+    $dbname = "u463135857_yxuq";
+    $conn = new mysqli($address ,$username ,$password ,$dbname);?>
+<html lang="en"><head>
+<title>Client section</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body>
+    <div class="container menu"><?php
+    if(!$_COOKIE["user"]){
+        echo "Please login!";
+        exit();}
+        echo "<h2>Welcome " . $_COOKIE["user"] . "!</h2>";
+        $sql = "SELECT empname FROM relation WHERE clientname='$user'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        if($result->num_rows > 0){
+            echo "You ar ecurrently allocated to " . $row["empname"] . " you can use the talk feature to get in touch with them.<br/>";}else{
+            echo "You are yet to be allocated to an employee. You can wait or you can contact our manager.<br/>";}?></div>
+    <div class="container menu">
+    <p>Here you have a chatting facility to communicate with the employee and managers of the organization.</p>
+    <div class="container">
+    <a href="/talk.php">Talk</a><br/></div>
+    <div class="container">
+    <a href="/change.php">Change Password</a></div></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Change.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Login page</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body><?php
+$user = $_COOKIE["user"];
+if(!$_COOKIE["user"]){
+    echo "<div class='container menu'>";
+    echo "Please login again!";
+    echo "</div>";
+    exit();?>
+    <div class="container menu">
+        <div class="container page-header menu">
+        <h1>Change password:</h1></div>
+    <form method="post" action="change.php">
+        <label for="previous">Enter previous password:</label>
+        <input type="password" maxlength="20" id="previous" name="previous" placeholder="Previous" autofocus><br/>
+        <label for="new">Enter new password:</label>
+        <input type="password" maxlength="20" id="new" name="new" placeholder="New"><br/>
+        <label for="new1">Please reenter new password:</label>
+        <input type="password" maxlength="20" id="new1" name="new1" placeholder="Reenter"><br/>
+        <input type="submit" value="Change!" name="change"></form><?php
+        if($_POST["change"]){
+            $username = "u463135857_yxuq";
+            $password = "u463135857_yxuq";
+            $address = "localhost";
+            $dbname = "u463135857_yxuq";
+            $name = $_COOKIE["user"];
+            $oldclientpass = $_POST["previous"];
+            $newpass = $_POST["new"];
+            $newpass1 = $_POST["new1"];
+            $conn = new mysqli($address ,$username ,$password ,$dbname);
+            $sql="SELECT password FROM login_details WHERE user_id='$name'";
+            $result = $conn->query($sql);
+            $row=$result->fetch_assoc();
+            $oldserverpass=$row["password"];
+            if($oldclientpass===""){
+                echo "Please enter the old password!<br/>";
+                exit();}elseif($newpass===""){
+                echo "You cannot leave new password field blank!<br/>";
+                exit();}elseif($newpass1===""){
+                echo "Please reenter the new password<br/>";
+                exit();}
+            if($oldclientpass===$oldserverpass){
+                if($newpass === $newpass1){
+                    $sql="UPDATE login_details SET password='$newpass' WHERE user_id='$name'";
+                    if($conn->query($sql) == true){
+                        echo "Password Successfully changed!<br/>";}else{
+                        echo "Error! Please try again later!" . $conn->error();}}else{
+                    echo "The new passwords do not match!<br/>";}}else{
+                echo "Password incorrect! Please try again!<br/>";}}
+    $conn->close();?></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Allot.php
+<!DOCTYPE html><?php
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $address = "localhost";
+    $dbname = "u463135857_yxuq";
+    $conn = new mysqli($address ,$username ,$password ,$dbname);?>
+<html lang="en"><head><title>Welcome to Pages</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/style.css">
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#009a9f"></head><body>
+    <div class="container menu welcome">
+        <h1>Allocate client's and employees:</h1>
+        <p>You can allot a client to an employee or an employee to a client using the following tool.</p></div>
+    <div class="container menu">
+    <h2>Allot client to an employee</h2>
+    <form method="POST" action="allot.php">
+        <label for="client">Select Client:</label>
+        <select name="client" id="client"><?php
+                $sql = "SELECT Name FROM client_details";
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()){
+                    echo "<option name='" . $row["Name"] . "'>" . $row["Name"] . "</option>";}?>
+        </select>
+        <label for="emp">Select Employee to allot to:</label>
+        <select name="emp" id="emp"><?php
+                $sql = "SELECT Name FROM emp_details";
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()){
+                    echo "<option name='" . $row["Name"] . "'>" . $row["Name"] . "</option>";}?>
+        </select>
+        <input type="submit" name="allot" value="Allot"></form><?php
+        if($_POST["allot"]){
+            $client = $_POST["client"];
+            $emp = $_POST["emp"];
+            $sql = "INSERT INTO relation VALUES('$emp','$client')";
+            if($conn->query($sql) == TRUE){
+                echo "Client has been allocated to the employee!<br/>";
+                exit();}else{
+                echo "Error allocating client and employee" . $conn->error();}}?></div>
+    <div class="container menu">
+    <h2>View alloted employee's and client's</h2><?php
+        $sql = "SELECT * FROM relation";
+        $result = $conn->query($sql);
+        echo "<table class='table' align='center'><tr><th>Employee</th><th>Client</th></tr>";
+        while($row = $result->fetch_assoc()){
+            echo "<tr><td>" . $row["empname"] . "</td><td>" . $row["clientname"] . "</td></tr>";}
+        echo "</table>";?></div>
+    <div class="container menu">
+    <h2>Selective view of alloted employee's</h2>
+    <form method="POST" action="allot.php">
+    <label for="empsearch">Select employee to see allocated clients:</label>
+        <select name="empsearch" id="empsearch"><?php
+                $sql = "SELECT Name FROM emp_details";
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()){
+                    echo "<option name='" . $row["Name"] . "'>" . $row["Name"] . "</option>";}?>
+        </select>
+        <input type="submit" value="Search" name="searchemp"></form><?php
+        if($_POST["searchemp"]){
+            $empname = $_POST["empsearch"];
+            $sql = "SELECT * FROM relation WHERE empname='$empname'";
+            $result = $conn->query($sql);
+            echo "<table class='table' align='center'><tr><th>Employee</th><th>Client</th></tr>";
+            while($row = $result->fetch_assoc()){
+                echo "<tr><td>" . $row["empname"] . "</td><td>" . $row["clientname"] . "</td></tr>";}
+            echo "</table>";}?></div>
+    <div class="container menu">
+    <h2>Selective view of alloted clients</h2>
+        <form method="POST" action="allot.php">
+            <label for="clientsearch">Select Client:</label>
+            <select name="clientsearch" id="clientsearch"><?php
+                    $sql = "SELECT Name FROM client_details";
+                    $result = $conn->query($sql);
+                    while($row = $result->fetch_assoc()){
+                        echo "<option name='" . $row["Name"] . "'>" . $row["Name"] . "</option>";}?>
+            </select>
+            <input type="submit" value="Search" name="searchclient"></form><?php
+        if($_POST["searchclient"]){
+            $clientname = $_POST["clientsearch"];
+            $sql = "SELECT * FROM relation WHERE clientname='$clientname'";
+            $result = $conn->query($sql);
+            echo "<table class='table' align='center'><tr><th>Employee</th><th>Client</th></tr>";
+            while($row = $result->fetch_assoc()){
+                echo "<tr><td>" . $row["empname"] . "</td><td>" . $row["clientname"] . "</td></tr>";}
+            echo "</table>";}?></div>
+    <div class="container menu">
+    <h2>Unallocated employees are as follows</h2><?php
+        $sql = "SELECT Name FROM emp_details WHERE Name NOT IN (SELECT empname FROM relation)";
+        $result = $conn->query($sql);
+        echo "<table class='table' align='center'><tr><th>Unallocated Employees</th></tr>";
+        while($row = $result->fetch_assoc()){
+            echo "<tr><td>" . $row["Name"] . "</td></tr>";}
+        echo "</table>";?></div>
+    <div class="container menu">
+    <h2>Unallocated clients are as follows</h2><?php
+        $sql = "SELECT Name FROM client_details WHERE Name NOT IN (SELECT clientname FROM relation)";
+        $result = $conn->query($sql);
+        echo "<table class='table' align='center'><tr><th>Unallocated Client</th></tr>";
+        while($row = $result->fetch_assoc()){
+            echo "<tr><td>" . $row["Name"] . "</td></tr>";}
+        echo "</table>";?></div>
+    <div class="container menu">
+    <h2>Remove allocated employees and clients</h2>
+    <form method="POST" action="allot.php">
+        <label></label>
+        <h2>Select name of the client:</h2>
+    <form method="POST" action="allot.php">
+        <label for="delclient">Select Client:</label>
+        <select name="delclient" id="delclient"><?php
+                $sql = "SELECT clientname FROM relation";
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()){
+                    echo "<option name='" . $row["Name"] . "'>" . $row["Name"] . "</option>";}?>
+        </select>
+        <label for="delemp">Select name of the employee</label>
+        <select name="delemp" id="delemp"><?php
+                $sql = "SELECT empname FROM relation";
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()){
+                    echo "<option name='" . $row["Name"] . "'>" . $row["Name"] . "</option>";}?>
+            <input type="submit" value="Deallocate" name="deallocate">
+        </select></form><?php
+    if($_POST["deallocate"]){
+        $delclient = $_POST["delclient"];
+        $delemp = $_POST["delemp"];
+        $sql = "SELECT * FROM relation WHERE empname='$delemp' AND clientname='$delclient'";
+        $result = $conn->query($sql);
+        if($result->num_rows > 0){
+            $sql = "DELETE FROM relation WHERE empname='$delemp' AND clientname='$delclient'";
+            if($conn->query($sql) == TRUE){
+                echo "Employee and clients deallocated!<br/>";
+                exit();}else{
+                echo "Error while deallocating clients and employees " . $conn->error() . "<br/>";}}else{
+            echo "The entered client and employee are not allocated together!<br/>";}}?></div>
+<script type="application/javascript">
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+allot(emp).php
+<!DOCTYPE html><?php
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $address = "localhost";
+    $dbname = "u463135857_yxuq";
+    $conn = new mysqli($address ,$username ,$password ,$dbname);
+    $user = $_COOKIE["user"];?>
+<html lang="en"><head><title>Welcome to Pages</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/style.css">
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#009a9f"></head><body>
+<div class="container menu welcome">
+        <h1>Allocate client's to you:</h1>
+        <p>You can allot a client to yourself using the following tool.</p></div>
+    <div class="container menu">
+    <h2>Allot client to you</h2>
+    <form method="POST" action="allot(emp).php">
+        <label for="client">Select Client:</label>
+        <select name="client" id="client"><?php
+                $sql = "SELECT Name FROM client_details";
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()){
+                    echo "<option name='" . $row["Name"] . "'>" . $row["Name"] . "</option>";}?>
+        </select>
+        <input type="submit" name="allot" value="Allot"></form><?php
+        if($_POST["allot"]){
+            $client = $_POST["client"];
+            $emp = $_POST["emp"];
+            $sql = "INSERT INTO relation VALUES('$user','$client')";
+            if($conn->query($sql) == TRUE){
+                echo "Client has been allocated to you!<br/>";
+                exit();}else{
+                echo "Error allocating client to you" . $conn->error();}}?></div>
+    <div class="container menu">
+    <h2>Clients that are allocated to you</h2><?php
+        $sql = "SELECT * FROM relation WHERE empname='$user'";
+        $result = $conn->query($sql);
+        echo "<table class='table' align='center'><tr><th>Employee</th><th>Client</th></tr>";
+        while($row = $result->fetch_assoc()){
+            echo "<tr><td>" . $row["empname"] . "</td><td>" . $row["clientname"] . "</td></tr>";}
+        echo "</table>";?></div>
+    <div class="container menu">
+    <h2>View unallocated clients</h2><?php
+        $sql = "SELECT Name FROM client_details WHERE Name NOT IN (SELECT clientname FROM relation)";
+        $result = $conn->query($sql);
+        echo "<table class='table' align='center'><tr><th>Unallocated Client</th></tr>";
+        while($row = $result->fetch_assoc()){
+            echo "<tr><td>" . $row["Name"] . "</td></tr>";}
+        echo "</table>";?></div>
+    <div class="container menu">
+    <h2>Remove client's that are allocated to you</h2>
+    <form method="POST" action="allot(emp).php">
+        <select name="client" id="client"><?php
+                $sql = "SELECT clientname FROM relation WHERE empname='$user'";
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()){
+                    echo "<option value='" . $row["clientname"] . "'>" . $row["clientname"] . "</option>";}?>
+        </select>
+        <input type="submit" value="Remove" name="remove"></form><?php
+        if($_POST["remove"]){
+            $client = $_POST["client"];
+            $sql = "DELETE FROM relation WHERE empname='$user' AND clientname='$client'";
+            if($conn->query($sql) == TRUE){
+                echo "The client has be removed<br/>";}else{
+                echo "There was an error removing the client " . $conn->error() . "<br/>";}}?></div>
+<script type="application/javascript">
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Manager.php
+<!DOCTYPE html>
+<html lang="en"><head><title>Welcome to Pages</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#009a9f"></head><body>
+    <div class="welcome container">
+<h1>Pages:</h1><?php
+    if(!$_COOKIE["user"]){
+        echo "Please login!";
+        exit();}
+        echo "<h2>Welcome " . $_COOKIE["user"] . "!</h2><br/>";?></div>
+    <div class="container menu">
+    <p>These links will take you to the specified pages which contain the data. You can perform all the operations that you need.</p></div>
+    <div class= "container menu">
+    <h3>Menu:</h3>
+    <div class="container">
+    <a href="/client_data/client_data.php">Client data</a></div>
+    <div class="container">
+    <a href="/emp_data/emp_data.php">Employee data</a></div>
+<div class="container">
+    <a href="/additional_data/additional_data_of_client.html">Available additional data of client</a></div>
+<div class="container">
+    <a href="/additional_data/additional_data_of_emp.html">Available additional data of employees</a></div>
+<div class="container">
+    <a href="/testclient/testclient_display.php">Test clients</a></div>
+<div class="container">
+    <a href="/allot.php">Allot customer's</a></div>
+<div class="container">
+    <a href="/talk.php">Talk</a></div>
+<div class="container">
+    <a href="/change.php">Change Password</a></div></div>
+    <script type="application/javascript">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Talk.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Talk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#009a9f"></head><body><?php
+        $username = "u463135857_yxuq";
+        $password = "u463135857_yxuq";
+        $address = "localhost";
+        $dbname = "u463135857_yxuq";
+        $receiver = $_POST["receiver"];
+        $user = $_COOKIE["user"];
+        $message = $_POST["message"];
+        $conn = new mysqli( $address, $username, $password, $dbname);
+        if(!$_COOKIE["user"]){
+            echo "<div class='container menu'>";
+            echo "Please login again to use chatting functionality!";
+            exit();
+            echo "</div>";}
+        echo "<div class='container menu'>";
+        echo "<h1>Welcome " . $user . "! for further queries please contact following individuals</h1>";
+        $sql = "SELECT * FROM login_details";
+        $result = $conn->query($sql);
+        if($result->num_rows > 0){
+            echo "<table class='table' align='center'><tr><th>Username</th><th>Privilege</th></tr>";
+        while($row=$result->fetch_assoc()){
+            echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["user_type"] . "</td></tr>";}
+            echo "</table>";}
+        echo "</div>";?>
+    <div class="page-header container menu">
+    <h1>Read message</h1></div>
+    <!--<form method="post" action="talk.php">
+        <input type="submit" value="Refresh Inbox" name="refresh"></form>!--><?php
+            if($conn->connect_error){
+                echo "<div class='container menu'>";
+                die("Failed to connect to the server!" . $conn->connect_error);
+                echo "</div>";}
+        /*if($_POST["refresh"]){
+            echo "Inbox refreshed!";}*/
+        /*$sql="SELECT * FROM message WHERE receiver='$user'";
+        $result = $conn->query($sql);
+        if($result->num_rows > 0){
+            echo "<br/><table align='center'><tr><th>Sender</th><th>Message</th></tr>";
+            while($row = $result->fetch_assoc()){
+                echo "<tr><td>" . $row["sender"] . "</td><td>" . $row["message"] . "</td></tr>";}echo "</table><br/>";}else{
+            echo "No messages to show<br/>";}*/?>
+        <div class="container menu">
+    <iframe src="/messages/message.php" width="auto" height="300px" scrolling="auto">
+    </iframe></div>
+    <div class="container menu">
+<h1>Write message</h1>
+    <form method="post" action="talk.php">
+    <label for="receiver">To:</label>
+    <input type="text" maxlength="30" id="receiver" name="receiver"><br/>
+    <label>Message:</label>
+    <textarea rows="14" cols="30" name="message" id="message"></textarea><br/>
+    <input type="submit" value="Send" name="mess"></form><?php
+        if($_POST["mess"]){
+            if($_COOKIE["user"] == "manager"){
+                if(strrchr($receiver, "#")){
+                    if($receiver == "#all"){
+                        $sql = "SELECT user_id FROM login_details";
+                        $result = $conn->query($sql);
+                        while($row = $result->fetch_assoc()){
+                            $receiver1 = $row["user_id"];
+                            $sql = "INSERT INTO message VALUES('$user','$receiver1','$message')";
+                            $conn->query($sql);}
+                        exit();}
+                    if($receiver == "#emp"){
+                        $sql = "SELECT user_id FROM login_details WHERE user_type = 'emp'";
+                        $result = $conn->query($sql);
+                        while($row = $result->fetch_assoc()){
+                            $receiver1 = $row["user_id"];
+                            $sql = "INSERT INTO message VALUES('$user','$receiver1','$message')";
+                            $conn->query($sql);}
+                        exit();}
+                    if($receiver == "#client"){
+                        $sql = "SELECT user_id FROM login_details WHERE user_type = 'client'";
+                        $result = $conn->query($sql);
+                        while($row = $result->fetch_assoc()){
+                            $receiver1 = $row["user_id"];
+                            $sql = "INSERT INTO message VALUES('$user','$receiver1','$message')";
+                            $conn->query($sql);}
+                        exit();}
+                    if($receiver == "#testclient"){
+                        $sql = "SELECT user_id FROM login_details WHERE user_type = 'testclient'";
+                        $result = $conn->query($sql);
+                        while($row = $result->fetch_assoc()){
+                            $receiver1 = $row["user_id"];
+                            $sql = "INSERT INTO message VALUES('$user','$receiver1','$message')";
+                            $conn->query($sql);}
+                        exit();}}}
+            $sql="SELECT * FROM login_details WHERE user_id='$receiver'";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0){
+                $sql="INSERT INTO message VALUES('$user','$receiver','$message')";
+                $conn->query($sql);
+                echo "Message sent!<br/>";}else{
+                echo "The user " . $receiver . " does not exist!<br/>";}}
+    $conn->close();?></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Style.css
+body{
+    background-color: #80c8bc;
+    color: #e27d5f;
+    text-align: center;
+    font-family: monospace;
+    font-size: 18px;
+    /*margin: 0 auto;
+    width: 800px;*/}
+h1,h2,h3,h4{
+    color: #e27d5f;}
+input,select{
+    border: 2px;
+    border-style: solid;
+    border-color: #e27d5f;
+    color: #caf6f4;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color: #009a9f;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;}
+input::placeholder{
+    color: #caf6f4;
+    text-align: center;
+    font-family: sans-serif;}
+input{
+    background-color: #009a9f;}
+label{
+    display: block;}
+ul{
+    list-style-type: none;}
+.button{
+    color: #caf6f4;}
+a{
+    color: #caf6f4;
+    text-decoration: none;}
+a:visited{
+    color: #caf6f4;}
+textarea{
+    background-color: #e27d5f;
+    color: #caf6f4;}
+table,th,td{
+    border-collapse: collapse;
+    border: 1px solid #039a9c;}
+iframe{
+    padding: 30px;
+    border-width: 0px;}
+@media only screen and (max-width: 600px){
+    table{
+        width: 100%;}
+    td{
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;}}
+.container{
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 10px;}
+.menu{
+    background-color: #40b3a2;
+    margin-bottom: 10px;
+    margin-top: 10px;}
+.welcome{
+    border-width: 1px;
+    background-color: #40b3a2;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;}
+Additional_data_of_emp.html
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Additional data.</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu page-header">
+    <h1>Additional employee data entry.<br/></h1></div>
+    <div class="container menu">
+    <p>Entry of any additional Employee details can be done below.<br/></p>
+    <form method="post" action="/additional_data/additional_employee_data/additional_employee_data.php">
+        <label for="eid">EID:</label>
+        <input type="number" maxlength="10" id="eid" name="eid" placeholder="eid"><br/>
+        <label for="secondary_phoneno">Secondary Phone number:</label>
+        <input type="number" maxlength="10" id="secondary_phoneno" name="secondary_phoneno" placeholder="Secondary phoneno"><br/>
+        <label for="aadhar_number">Purpose:</label>
+        <input type="number" maxlength="16" id="aadhar_number" name="aadhar_number" placeholder="Aadhar_number"><br/>
+        <input type="submit" value="Done"><br/></form></div>
+    <div class="container menu">
+        <h3>The additional data of employees can be viewed using the following link.<br/></h3>
+        <p><a href="/additional_data/additional_employee_data/view_additional_employee_data.php">View additional employee data</a></p></div>
+        <div class="container menu">
+        <h3>The additional data of the clients can also be deleted using the following field.<br/></h3>
+        <p>Enter the EID of the Employee whose data you want to delete.<br/></p>
+        <form method="post" action="/additional_data/additional_employee_data/delete_additional_employee_data.php">
+            <label for="eid">EID:</label>
+            <input type="number" maxlength="10" id="eid" name="eid" placeholder="EID"><br/>
+            <input type="submit" value="Done"><br/></form></div>
+        <div class="container menu">
+    <h1>The additional data of the employees can be updated using the following facility.<br/></h1>
+    <p>Just select the field you want to update from the dropdown and the EID of the particular employee and the data that has to be reflected and proceed. The data will be reflected immediately.<br/></p>
+    <form method="POST" action="/additional_data/additional_employee_data/update_additional_employee_data.php">
+        <label for="sel">Update:</label>
+        <select id="sel" name="sel">
+            <option value="Secondary_phoneno">Secondary Phone Number</option>
+            <option value="Aadhar_number">Aadhar number</option>
+        </select><br/>
+        <label for="id">EID to update:</label>
+        <input type="number" name="id" maxlength="10" placeholder="EID" id="id"><br/>
+        <label for="value">Updated value:</label>
+        <input type="text" placeholder="Value" name="val" maxlength="16" id="value">
+        <input type="submit" value="Done"><br/></form></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Additional_data_of_client.html
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Additional data.</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu page-header">
+    <h1>Additional client data entry.<br/></h1></div>
+    <div class="container menu">
+    <p>Entry of any additional Client details can be done below.<br/></p>
+    <form method="post" action="/additional_data/additional_client_data/additional_client_data.php">
+        <label for="cid">CID:</label>
+        <input type="number" maxlength="10" id="cid" name="cid" placeholder="CID" class="box" size="100px"><br/>
+        <label for="secondary_phoneno">Secondary Phone number:</label>
+        <input type="number" maxlength="10" id="secondary_phoneno" name="secondary_phoneno" placeholder="Secondary phoneno"><br/>
+        <label for="purpose">Purpose:</label>
+        <input type="text" maxlength="30" id="purpose" name="purpose" placeholder="Purpose"><br/>
+        <input type="submit" value="Done"><br/></form></div>
+    <div class="container menu">
+        <h3>The additional data of clients can be viewed using the following link.<br/></h3>
+        <p><a href="/additional_data/additional_client_data/view_additional_client_data.php">View additional client data</a></p></div>
+        <div class="container menu">
+        <h3>The additional data of the clients can also be deleted using the following field.<br/></h3>
+        <p>Enter the CID of the client whose data you want to delete.<br/></p>
+        <form method="post" action="/additional_data/additional_client_data/delete_additional_client_data.php">
+            <label for="cid">ID:</label>
+            <input type="number" maxlength="10" id="cid" name="cid" placeholder="cid"><br/>
+            <input type="submit" value="Done"><br/></form></div>
+        <div class="container menu">
+    <h1>The additional data of the clients can be updated using the following facility.<br/></h1>
+    <p>Just select the field you want to update from the dropdown and the CID of the particular client and the data that has to be reflected and proceed. The data will be reflected immediately.<br/></p>
+    <form method="POST" action="/additional_data/additional_client_data/update_additional_client_data.php">
+        <label for="sel">Update:</label>
+        <select id="sel" name="sel">
+            <option value="Secondary_phoneno">Secondary Phone Number</option>
+            <option value="Purpose">Purpose</option>
+        </select><br/>
+        <label for="id">CID to update:</label>
+        <input type="number" name="id" maxlength="10" placeholder="CID" id="id"><br/>
+        <label for="value">Updated value:</label>
+        <input type="text" placeholder="Value" name="val" maxlength="30" id="value">
+        <input type="submit" value="Done"><br/></form></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Additional_data_of_(emp).html
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Additional data.</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container page-header menu">
+    <h1>Additional client data entry.<br/></h1></div>
+    <div class="container menu">
+    <p>Entry of any additional Client details can be done below.<br/></p>
+    <form method="post" action="/additional_data/additional_client_data/additional_client_data.php">
+        <label for="cid">CID:</label>
+        <input type="number" maxlength="10" id="cid" name="cid" placeholder="CID" class="box" size="100px"><br/>
+        <label for="secondary_phoneno">Secondary Phone number:</label>
+        <input type="number" maxlength="10" id="secondary_phoneno" name="secondary_phoneno" placeholder="Secondary phoneno"><br/>
+        <label for="purpose">Purpose:</label>
+        <input type="text" maxlength="30" id="purpose" name="purpose" placeholder="Purpose"><br/>
+        <input type="submit" value="Done"><br/></form></div>
+    <div class="container menu">
+        <h3>The additional data of clients can be viewed using the following link.<br/></h3>
+        <p><a href="/additional_data/additional_client_data/view_additional_client_data.php">View additional client data</a></p></div>
+    <div class="container menu">
+        <h3>The additional data of the clients can also be deleted using the following field.<br/></h3>
+        <p>Enter the CID of the client whose data you want to delete.<br/></p>
+        <form method="post" action="/additional_data/additional_client_data/delete_additional_client_data.php">
+            <label for="cid">ID:</label>
+            <input type="number" maxlength="10" id="cid" name="cid" placeholder="cid"><br/>
+            <input type="submit" value="Done"><br/></form></div>
+    <div class="container menu">
+    <h1>The additional data of the clients can be updated using the following facility.<br/></h1>
+    <p>Just select the field you want to update from the dropdown and the CID of the particular client and the data that has to be reflected and proceed. The data will be reflected immediately.<br/></p>
+    <form method="POST" action="/additional_data/additional_client_data/update_additional_client_data.php">
+        <label for="sel">Update:</label>
+        <select id="sel" name="sel">
+            <option value="Secondary_phoneno">Secondary Phone Number</option>
+            <option value="Purpose">Purpose</option>
+        </select><br/>
+        <label for="id">CID to update:</label>
+        <input type="number" name="id" maxlength="10" placeholder="CID" id="id"><br/>
+        <label for="value">Updated value:</label>
+        <input type="text" placeholder="Value" name="val" maxlength="30" id="value">
+        <input type="submit" value="Done"><br/></form></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Additional_client_data.php
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Additional client data</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="##009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+        $cid = $_POST["cid"];
+        $secondary_phoneno = $_POST["secondary_phoneno"];
+        $purpose = $_POST["purpose"];
+        $username = "u463135857_yxuq";
+        $dbname = "u463135857_yxuq";
+        $address = "localhost";
+        $password = "u463135857_yxuq";
+        echo "The entered CID is " . $cid . "<br/>";
+        echo "The entered secondary phone number is " . $secondary_phoneno . "<br/>";
+        echo "The entered purpose is " . $purpose . "<br/>";
+        echo "Checking the connection to the database...<br/>";
+        $conn = new mysqli($address ,$username ,$password ,$dbname);
+        if($conn->connect_error){
+            die ("There was an error connecting to the database! " . $conn->connect_error);}
+        echo "Successfully connected to the database!<br/>";
+        if(strlen($secondary_phoneno) > 10){
+            echo "Please enter 10 digit phone number!<br/>";
+            exit();}
+        $sql = "INSERT INTO add_client_details values('$cid', '$secondary_phoneno', '$purpose')";
+        if($conn->query($sql) === TRUE){
+            echo "The data was added successfully!<br/>";}else{
+            echo "The data was not pushed! " . $conn->error();}
+        $conn->close();?></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+delete_Additional_client_data.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Additional client data</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+$username = "u463135857_yxuq";
+$password = "u463135857_yxuq";
+$sadderss = "localhost";
+$dbname = "u463135857_yxuq";
+$cid = $_POST["cid"];
+echo "Checking the connection to the database...<br/>";
+$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+echo "Connected successfully to the database!<br/>";
+$sql = "DELETE FROM add_client_details WHERE CID=$cid";
+if($conn->query($sql)){
+    echo "Record with " . $cid . " deleted successfully!";}else{
+    echo "Error deleting record: " . $conn->error;}
+$conn->close();?></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+update_Additional_client_data.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Client Additional Data Updater</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+    $sel = $_POST["sel"];
+    $id = $_POST["id"];
+    $val = $_POST["val"];
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $address = "localhost";
+    $dbname = "u463135857_yxuq";
+    echo "Checking the connection to the database...<br/>";
+$conn = new mysqli($address ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+echo "Connected successfully to the database!<br/>";
+    echo "The value of CID " . $id . " and column " . $sel . " will be updated to " . $val . "<br/>";
+    echo "Now pushing the data into the database...<br/>";
+    $sql = "UPDATE add_client_details SET $sel = '$val' WHERE CID = $id";
+    if($conn->query($sql) === TRUE){
+        echo "Content updated successfully!";}else{
+        echo "Error updating the content. " . $conn->error;}
+    $conn->close();?></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+view_Additional_client_data.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Additional client data</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+$username = "u463135857_yxuq";
+$password = "u463135857_yxuq";
+$sadderss = "localhost";
+$dbname = "u463135857_yxuq";
+$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+$sql = "SELECT * FROM add_client_details";
+$result = $conn->query($sql);
+if($result->num_rows > 0){
+    echo "<table class='table' align='center'><tr><th>Customer ID</th><th>Secondary Phone number</th><th>Purpose</th></tr>";
+    while($row = $result->fetch_assoc()){
+        echo "<tr><td>" . $row["CID"] . "</td><td>" . $row["Secondary_phoneno"] . "</td><td>" . $row["Purpose"] . "</td></tr>";}
+    echo "</table>";}else{
+    echo "There is no data to show.<br>";}
+$conn->close();?></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Additional_employee_data.php
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Additional client data</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+        $eid = $_POST["eid"];
+        $secondary_phoneno = $_POST["secondary_phoneno"];
+        $aadhar_number = $_POST["aadhar_number"];
+        $username = "u463135857_yxuq";
+        $dbname = "u463135857_yxuq";
+        $address = "localhost";
+        $password = "u463135857_yxuq";
+        echo "Checking the connection to the database...<br/>";
+        $conn = new mysqli($address ,$username ,$password ,$dbname);
+        if($conn->connect_error){
+            die ("There was an error connecting to the database! " . $conn->connect_error);}
+        echo "Successfully connected to the database!<br/>";
+        if(strlen($secondary_phoneno) > 10){
+            echo "Please enter 10 digit phone number!<br/>";
+            exit();}
+        $sql = "INSERT INTO add_employee_details values('$eid', '$secondary_phoneno', '$aadhar_number')";
+        if($conn->query($sql) === TRUE){
+            echo "The data was added successfully!<br/>";}else{
+            echo "The data was not pushed! " . $conn->error();}
+        $conn->close();?></div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+delete_Additional_employee_data.php
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Additional client data</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+        $eid = $_POST["eid"];
+        $secondary_phoneno = $_POST["secondary_phoneno"];
+        $aadhar_number = $_POST["aadhar_number"];
+        $username = "u463135857_yxuq";
+        $dbname = "u463135857_yxuq";
+        $address = "localhost";
+        $password = "u463135857_yxuq";
+        echo "Checking the connection to the database...<br/>";
+        $conn = new mysqli($address ,$username ,$password ,$dbname);
+        if($conn->connect_error){
+            die ("There was an error connecting to the database! " . $conn->connect_error);}
+        echo "Successfully connected to the database!<br/>";
+        if(strlen($secondary_phoneno) > 10){
+            echo "Please enter 10 digit phone number!<br/>";
+            exit();}
+        $sql = "INSERT INTO add_employee_details values('$eid', '$secondary_phoneno', '$aadhar_number')";
+        if($conn->query($sql) === TRUE){
+            echo "The data was added successfully!<br/>";}else{
+            echo "The data was not pushed! " . $conn->error();}
+        $conn->close();?></div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+update_Additional_employee_data.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Client Additional Data Updater</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+    $sel = $_POST["sel"];
+    $id = $_POST["id"];
+    $val = $_POST["val"];
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $address = "localhost";
+    $dbname = "u463135857_yxuq";
+    echo "Checking the connection to the database...<br/>";
+$conn = new mysqli($address ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+echo "Connected successfully to the database!<br/>";
+    echo "The value of EID " . $id . " and column " . $sel . " will be updated to " . $val . "<br/>";
+    echo "Now pushing the data into the database...<br/>";
+    $sql = "UPDATE add_employee_details SET $sel = '$val' WHERE EID = $id";
+    if($conn->query($sql) === TRUE){
+        echo "Content updated successfully!";}else{
+        echo "Error updating the content. " . $conn->error;}
+    $conn->close();?></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+view_Additional_employee_data.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Additional client data</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+$username = "u463135857_yxuq";
+$password = "u463135857_yxuq";
+$sadderss = "localhost";
+$dbname = "u463135857_yxuq";
+echo "Checking the connection to the database...<br/>";
+$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+echo "Connected successfully to the database!<br/>";
+$sql = "SELECT * FROM add_employee_details";
+$result = $conn->query($sql);
+if($result->num_rows > 0){
+    echo "<table align='center'><tr><th>Employee ID</th><th>Secondary Phone number</th><th>Aadhar Number</th></tr>";
+    while($row = $result->fetch_assoc()){
+        echo "<tr><td>" . $row["EID"] . "</td><td>" . $row["Secondary_phoneno"] . "</td><td>" . $row["Aadhar_number"] . "</td></tr>";}
+    echo "</table>";}else{
+    echo "There is no data to show.<br>";}
+$conn->close();?></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Client_data.php
+<!DOCTYPE html>
+<html lang="en"><head><title>Client data.</title></head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"><body><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+       $username = "u463135857_yxuq";
+        $password = "u463135857_yxuq";
+       $sadderess = "localhost";
+       $dbname = "u463135857_yxuq";
+    $conn = new mysqli($sadderess ,$username ,$password ,$dbname);
+    if($conn->connect_error){
+        die("Failed to connect to the server!" . $conn->connect_error);}?>
+    <div class="container menu">
+    <h1>Please enter customer details below:</h1></div>
+    <div class="container menu">
+    <form method="POST" action="/client_data/client_data.php">
+        <label for="name">Name:</label>
+    <input type="text" placeholder="Name" name="name" maxlength="30" id="name" autofocus><br/>
+        <label for="phoneno">Phone number:</label>
+    <input type="number" placeholder="Phone number" name="phoneno" maxlength="10" id="phoneno"><br/>
+        <label for="address">Address:</label>
+    <input type="text" placeholder="Address" name="address" maxlength="50" id="address"><br/>
+        <input type="submit" value="Done" name="cdata"></form></div><?php
+    if($_POST["cdata"]){
+        $name = $_POST["name"];
+        $phoneno = $_POST["phoneno"];
+           $address = $_POST["address"];
+        if(($name AND $phoneno AND $address) != ""){
+            $sql = "SELECT * FROM client_details WHERE Name = '$name'";
+            $result = $conn->query($sql);
+            $result = $result->num_rows;
+            $sql = "SELECT * FROM emp_details WHERE Name = '$name'";
+            $result1 = $conn->query($sql);
+            $result1 = $result1->num_rows;
+            $sql = "SELECT * FROM login_details WHERE user_id = '$name'";
+            $result2 = $conn->query($sql);
+            $result2 = $result2->num_rows;
+            if(strrchr($name, "#")){
+                echo "No special characters allowed!<br/>";
+                               exit();}
+            if(strlen($phoneno) > 10){
+                echo "Please enter 10 digit phone number!<br/>";
+                exit();}
+            if(($result + $result1 + $result2) == 0){
+                $sql = "INSERT INTO client_details(Name, Phone_no, Address) VALUES ('$name', $phoneno, '$address')";
+                $conn->query($sql);
+                $cpassword=$name."123";
+                $sql="INSERT INTO login_details VALUES('$name','$cpassword','client')";
+                if($conn->query($sql) === TRUE){
+                echo "The username is " . $name . " the password is " . $cpassword . "<br/>";}else{
+                   echo "There was an error creating userid and password for the client<br/>";}}else{
+                if($result > 0){
+                    echo "Client " . $name . " already exists!<br/>";
+                    exit();
+                        if($result1 > 0){
+                    echo "Employee " . $name . " already exists!<br/>";
+                    exit();}
+                if($result2 > 0){
+                    echo $name . "Login name already taken<br/>";
+                    exit();}}}else{
+            echo "Please enter Name, Phone number, Address to proceed.<br/>";}}
+    $conn->close();?>
+    <div class="container menu">
+    <h2>The table can be viewed by clicking the following link.</h2>    
+    <p><a href="client_data_reader.php">Contents of the table.</a></p></div>
+    <div class="container menu">
+    <h2>The content of the table can deleted using the following link.</h2>
+    <p><a href="client_data_deleter.html">Delete values of the table.</a></p></div>
+    <div class="container menu">
+    <h2>The data of the clients can be updated using the following provided tool.<br/></h2>
+    <form method="POST" action="/client_data/client_data_updater.php">
+              <label for="sel">Update:</label>
+        <select id="sel" name="sel">
+            <option value="name">Name</option>
+            <option value="Phone_no">Phone number</option>
+            <option value="address">Address</option>
+        </select><br/>
+        <label for="id">CID to update:</label>
+        <input type="number" name="id" maxlength="10" placeholder="CID" id="id"><br/>
+        <label for="value">Updated value:</label>
+        <input type="text" placeholder="Value" name="val" maxlength="50" id="value">
+        <input type="submit" value="Done"><br/></form></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Client_data_deleter.html
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Client data deleter.</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu">
+    <h3>Enter the id of the data row to be deleted.<br/></h3>
+    <form method="post" action="client_data_deleter.php">
+        <label for="ID">ID:</label>
+        <input type="number" placeholder="ID" name="ID" maxlength="10" id="ID"><br/>
+        <input type="submit" id="submit" value="Done"></form></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Client_data_deleter.php
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Client data deleter.</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+$username = "u463135857_yxuq";
+$password = "u463135857_yxuq";
+$sadderss = "localhost";
+$dbname = "u463135857_yxuq";
+$id = $_POST["ID"];
+echo "Checking the connection to the database...<br/>";
+$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+echo "Connected successfully to the database!<br/>";
+       echo "Deleting account priviliges<br/>";
+    $sql = "SELECT * FROM client_details WHERE CID=$id";
+    $result=$conn->query($sql);
+    $row=$result->fetch_assoc();
+    $name=$row["Name"];
+    $sql="DELETE FROM login_details WHERE user_id='$name' AND user_type='client'";
+    $conn->query($sql);
+  $sql = "DELETE FROM client_details WHERE CID=$id";
+if($conn->query($sql)){
+    echo "Record with " . $id . " deleted successfully!";}else{
+    echo "Error deleting record: " . $conn->error;}
+$conn->close();?></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Client_data_reader.php
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Client data output.</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+$username = "u463135857_yxuq";
+$password = "u463135857_yxuq";
+$sadderss = "localhost";
+$dbname = "u463135857_yxuq";
+$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+$sql = "SELECT * FROM client_details ORDER BY CID";
+$result = $conn->query($sql);
+if($result->num_rows > 0){
+    echo "<table class='table' align='center'><tr><th>CID</th><th>Name</th><th>Phone number</th><th>Address</th></tr>";
+    while($row = $result->fetch_assoc()){
+        echo "<tr><td>" . $row["CID"]  . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_no"] . "</td><td>" . $row["Address"] . "</td></tr>";}
+    echo "</table>";}else{
+    echo "There is no data to show.<br/>";}
+$conn->close();?></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Client_data_updater.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Client Data Updater</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+    $sel = $_POST["sel"];
+    $id = $_POST["id"];
+    $val = $_POST["val"];
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $address = "localhost";
+    $dbname = "u463135857_yxuq";
+$conn = new mysqli($address ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+    echo "The value of CID " . $id . " and column " . $sel . " will be updated to " . $val . "<br/>";
+    if($sel=="name"){
+        $sql="SELECT Name FROM client_details WHERE CID = $id";
+        $result=$conn->query($sql);
+        $row = $result->fetch_assoc();
+        $result = $row["Name"];
+        $sql = "UPDATE login_details SET user_id = '$val' WHERE user_id = '$result'";
+        $conn->query($sql);}
+    $sql = "UPDATE client_details SET $sel = '$val' WHERE CID = $id";
+    if($conn->query($sql) === TRUE){
+        echo "Content updated successfully!";}else{
+        echo "Error updating the content. " . $conn->error;}
+    $conn->close();?></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Emp_data.php
+<!DOCTYPE html>
+<html lang="en"><head><title>Employee data.</title></head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"><body><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+       $saddress = "localhost";
+     $dbname = "u463135857_yxuq";
+    $conn = new mysqli($saddress ,$username ,$password ,$dbname);
+    if($conn->connect_error){
+        die("Failed to connect to the server!" . $conn->connect_error);}?>
+    <div class="container menu">
+    <h1>Please use the following tools to manage employee data</h1></div>
+    <div class="container menu">
+    <h2>Enter employee data:</h2>
+    <form method="POST" action="/emp_data/emp_data.php">
+        <label for="name">Name:</label>
+    <input type="text" placeholder="Name" name="name" maxlength="30" id="name"><br/>
+        <label for="phoneno">Phone number:</label>
+    <input type="number" placeholder="Phone number" name="phoneno" maxlength="10" id="phoneno"><br/>
+        <label for="address">Address:</label>
+    <input type="text" placeholder="Address" name="address" maxlength="50" id="address"><br/>
+        <label for="dep">Department:</label>
+        <select name="dep" id="dep" required>
+            <option value="accounts">Accounts</option>
+            <option value="marketting">Marketting</option>
+            <option value="computer">Computer</option>
+            <option value="production">production</option>
+            <option value="research">Research</option>
+        </select><br/>
+        <input type="submit" value="Done" name="emp"></form><?php
+    if($_POST["emp"]){
+        $name = $_POST["name"];
+            $phoneno = $_POST["phoneno"];
+          $address = $_POST["address"];
+          $dep = $_POST["dep"];
+        if(($name && $phoneno && $address && $dep) != ""){
+            /*$sql = "ALTER TABLE emp_details MODIFY COLUMN EID int(10)";
+            $conn->query($sql);
+            $sql = "ALTER TABLE emp_details MODIFY COLUMN EID int(10) NOT NULL AUTO_INCREMENT";
+            $conn->query($sql);*/
+            $sql = "SELECT * FROM client_details WHERE Name = '$name'";
+            $result = $conn->query($sql);
+            $result = $result->num_rows;
+            $sql = "SELECT * FROM emp_details WHERE Name = '$name'";
+            $result1 = $conn->query($sql);
+            $result1 = $result1->num_rows;
+            $sql = "SELECT * FROM login_details WHERE user_id = '$name'";
+            $result2 = $conn->query($sql);
+            $result2 = $result2->num_rows;
+            if(strrchr($name, "#")){
+                echo "No special characters allowed!<br/>";
+                exit();}
+            if(strlen($phoneno) > 10){
+                echo "Please enter 10 digit phone number!<br/>";
+                exit();}
+            if(($result + $result1 + $result2) == 0){
+                $sql = "INSERT INTO emp_details(Name, Phone_no, Address, Department) values ('$name', $phoneno, '$address', '$dep')";
+                $conn->query($sql);
+                $epassword=$name."123";
+                $sql="INSERT INTO login_details VALUES('$name','$epassword','emp')";
+                if($conn->query($sql) === TRUE){
+                   echo "The username is " . $name . " the password is " . $epassword . "<br/>";}else{
+                  echo "There was an error creating userid and password for the employee<br/>";}}else{
+                if($result > 0){
+                    echo "Client " . $name . " already exists!<br/>";
+                    exit();}
+                if($result1 > 0){
+                    echo "Employee " . $name . " already exists!<br/>";
+                    exit();}
+                if($result2 > 0){
+                    echo $name . "Login name already taken<br/>";
+                    exit();}}}else{
+            echo "Enter Name, Phone number, Address, Department<br/>";}}
+    $conn->close();?></div>
+    <div class="container menu">
+    <h2>The table can be viewed by clicking the following link.</h2>    
+    <p><a href="emp_data_reader.php">Contents of the table.</a></p></div>
+    <div class="container menu">
+    <h2>The content of the table can deleted using the following link.</h2>
+    <p><a href="emp_data_deleter.html">Delete values of the table.</a></p></div>
+    <div class="container menu">
+    <h1>The data of the employees can be updated using the following provided tool.<br/></h1>
+    <form method="POST" action="/emp_data/emp_data_updater.php">
+        <label for="sel">Update:</label>
+        <select id="sel" name="sel" required>
+            <option value="Name">Name</option>
+            <option value="Phone_no">Phone number</option>
+            <option value="Address">Address</option>
+            <option value="Department">Department</option>
+        </select><br/>
+        <label for="id">EID to update:</label>
+        <input type="number" name="id" maxlength="10" placeholder="EID" id="id"><br/>
+        <label for="value">Updated value:</label>
+        <input type="text" placeholder="Value" name="val" maxlength="50" id="value">
+        <input type="submit" value="Done"><br/></form></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Emp_data_deleter.html
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Client data deleter.</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu">
+    <h3>Enter the id of the data row to be deleted.<br/></h3>
+    <form method="post" action="emp_data_deleter.php">
+        <label for="EID">EID:</label>
+        <input type="number" placeholder="EID" name="EID" maxlength="10" id="EID"><br/>
+        <input type="submit" id="submit" value="Done"></form></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Emp_data_deleter.php
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Client data deleter.</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+$username = "u463135857_yxuq";
+$password = "u463135857_yxuq";
+$sadderss = "localhost";
+$dbname = "u463135857_yxuq";
+$eid = $_POST["EID"];
+echo "Checking the connection to the database...<br/>";
+$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+echo "Connected successfully to the database!<br/>";
+    echo "Deleting account priviliges<br/>";
+    $sql = "SELECT * FROM emp_details WHERE EID=$eid";
+    $result=$conn->query($sql);
+    $row=$result->fetch_assoc();
+    $name=$row["Name"];
+    $sql="DELETE FROM login_details WHERE user_id='$name' AND user_type='emp'";
+    $conn->query($sql);
+$sql = "DELETE FROM emp_details WHERE EID=$eid";
+if($conn->query($sql)){
+    echo "Record with " . $eid . " deleted successfully!";}else{
+    echo "Error deleting record: " . $conn->error;}
+$conn->close();?></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Emp_data_reader.php
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>Client data output.</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+$username = "u463135857_yxuq";
+$password = "u463135857_yxuq";
+$sadderss = "localhost";
+$dbname = "u463135857_yxuq";
+echo "Checking the connection to the database...<br/>";
+$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+echo "Connected successfully to the database!<br/>";
+$sql = "SELECT * FROM emp_details ORDER BY EID";
+$result = $conn->query($sql);
+if($result->num_rows > 0){
+    echo "<table class='table' align='center'><tr><th>EID</th><th>Name</th><th>Phone Number</th><th>Address</th><th>Department</th></tr>";
+    while($row = $result->fetch_assoc()){
+        echo "<tr><td>" . $row["EID"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_no"] . "</td><td>" . $row["Address"] . "</td><td>" . $row["Department"] . "</td></tr>";}
+    echo "</table>";}else{
+    echo "There is no data to show.<br/>";}
+$conn->close();?></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Emp_data_updater.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Employee Data Updater</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+    $sel = $_POST["sel"];
+    $id = $_POST["id"];
+    $val = $_POST["val"];
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $address = "localhost";
+    $dbname = "u463135857_yxuq";
+    $conn = new mysqli($address ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+    echo "The value of EID " . $id . " and column " . $sel . " will be updated to " . $val . "<br/>";
+    if($sel=="Name"){
+        $sql="SELECT Name FROM emp_details WHERE EID = $id";
+        $result=$conn->query($sql);
+        $row = $result->fetch_assoc();
+        $result = $row["Name"];
+        $sql = "UPDATE login_details SET user_id = '$val' WHERE user_id = '$result'";
+        $conn->query($sql);}
+    $sql = "UPDATE emp_details SET $sel = '$val' WHERE EID = $id";
+    if($conn->query($sql) == TRUE){
+        echo "Content updated successfully!";}else{
+        echo "Error updating the content. " . $conn->error;}
+    $conn->close();?></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Message.php<?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $address = "localhost";
+    $dbname = "u463135857_yxuq";
+    $receiver = $_POST["receiver"];
+    $user = $_COOKIE["user"];
+    $message = $_POST["message"];
+    $conn = new mysqli( $address, $username, $password, $dbname);
+    $sql="SELECT * FROM message WHERE receiver='$user'";
+    $result = $conn->query($sql);
+    $chat=$result->num_rows;?>
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Talk</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f">
+    <meta http-equiv="refresh" content="7"></head><body>
+    <div class="container menu"><?php
+        $sql="SELECT * FROM message WHERE receiver='$user'";
+        $result = $conn->query($sql);
+        if($result->num_rows > 0){
+            echo "<br/><table align='center'><tr><th>Sender</th><th>Message</th></tr>";
+            while($row = $result->fetch_assoc()){
+                echo "<tr><td>" . $row["sender"] . "</td><td>" . $row["message"] . "</td></tr>";}echo "</table><br/>";}else{
+            echo "No messages to show<br/>";}
+        /*for($i = 0; $i <= $i + 1; $i++){
+            time_sleep_until(time()+5);
+            $sql="SELECT * FROM message WHERE receiver='$user'";
+            $result = $conn->query($sql);
+            $chat2=$result->num_rows;
+            if($chat != $chat2){
+                echo "<script type='text/javascript'>document.location = '/index.php';</script>";}}*/
+    $conn->close();?></div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Signup.php
+<!DOCTYPE html>
+<html lang="en"><head><title>Client data.</title></head>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="theme-color" content="#009a9f">
+    <link rel="stylesheet" type="text/css" href="/style.css"><body><?php
+    $username = "u463135857_yxuq";
+    $password = "u463135857_yxuq";
+    $sadderess = "localhost";
+    $dbname = "u463135857_yxuq";
+    $conn = new mysqli($sadderess ,$username ,$password ,$dbname);
+    if($conn->connect_error){
+        echo "<div class='container menu>'";
+        die("Failed to connect to the server!" . $conn->connect_error);
+        echo "</div>";}?>
+    <div class="container page-header menu">
+    <h1>Please enter new username and password</h1></div>
+    <div class="container menu">
+    <form method="POST" action="/testclient/signup.php">
+    <label for="username1">Enter username:</label>
+    <input type="text" placeholder="Username" name="username1" id="username1" maxlength="30"><br/>
+    <label for="password1">Enter password:</label>
+    <input type="password" placeholder="Password" name="password1" id="password1" maxlength="30"><br/>
+    <label for="password2">Re-enter password:</label>
+    <input type="password" placeholder="Password" name="password2" id="password2" maxlength="30"><br/>
+    <input type="submit" value="Sign up!" name="signup"></form><?php
+        if($_POST["signup"]){
+            $username1 = $_POST["username1"];
+            $password1 = $_POST["password1"];
+            $password2 = $_POST["password2"];
+            if(($username1 and $password1 and $password2) != ""){
+                $sql = "SELECT * FROM login_details WHERE user_id = '$username1'";
+                $result = $conn->query($sql);
+                if($result->num_rows > 0){
+                    echo "The username already exists! Please enter a new username!<br/>";
+                    exit();}else{
+                    if($password1 != $password2){
+                        echo "Passwords do not match!<br/>";
+                        exit();}
+                    if(strrchr($username1, "#")){
+                        echo "No special characters allowed!<br/>";
+                        exit();}
+                    $sql = "INSERT INTO login_details VALUES ('$username1','$password1','testclient')";
+                    $conn->query($sql);
+                    echo "Signup Successfull!";}}else{
+                echo "Please check entered username and password";}}?></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Testclient.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Test Client Section</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body><?php
+if(!$_COOKIE["user"]){
+    echo "<div class='container menu'>";
+    echo "Please login!";
+    echo "</div>";
+    exit();}
+        echo "<div class='container menu'>";
+        echo "<h2>Welcome " . $_COOKIE["user"] . "!</h2><br/>";
+        echo "You can talk to our employees and manager and decide whether we suit your needs!<br/><br/> You can contact any of our employees to enroll you if your indeed interested.<br/>";
+        echo "</div>";?>
+    <div class="container menu">
+        <div class="container">
+    <p>Here you have a chatting facility to communicate with the employee and managers of the organization.</p></div>
+        <div class="container">
+    <a href="/talk.php">Talk</a><br/></div>
+<div class="container">
+    <a href="/change.php">Change Password</a></div></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>
+Testclient_display.php
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Test Client Section</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta name="theme-color" content="#009a9f"></head><body>
+    <div class="container menu"><?php
+if(!$_COOKIE["user"]){
+    echo "Please login!";
+    exit();}
+$username = "u463135857_yxuq";
+$password = "u463135857_yxuq";
+$sadderss = "localhost";
+$dbname = "u463135857_yxuq";
+$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+if($conn->connect_error){
+    die("Failed to connect to the server!" . $conn->connect_error);}
+$sql = "SELECT * FROM login_details where user_type = 'testclient'";
+$result = $conn->query($sql);
+echo "<h1>Test Clients:</h1>";
+if($result->num_rows > 0){
+    echo "<table class='table' align='center'><tr><th>Name</th</tr>";
+    while($row = $result->fetch_assoc()){
+        echo "<tr><td>" . $row["user_id"] . "</td></tr>";  }
+    echo "</table>";}else{
+    echo "No availabe test clients to display<br/>";}?>
+<h2>Delete test client credentials:</h2>
+<form method="POST" action="/testclient/testclient_display.php">
+    <label for="cname">Name of test client</label>
+    <input type="text" name="cname" id="cname" placeholder="Test clients name" maxlength="30"><br/>
+    <input type="submit" name="del" value="Delete"></form>
+<?php
+    if($_POST["del"]){
+        $cname = $_POST["cname"];
+        $sql = "DELETE FROM login_details WHERE user_id = '$cname' AND user_type = 'testclient'";
+        if($conn->query($sql) == FALSE){
+            echo "The test client " . $cname . " does not exist!<br/>";}
+        echo "Test client credentials deleted!<br/>";}
+    $conn->close();?></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script></body></html>

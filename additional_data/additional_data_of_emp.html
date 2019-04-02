@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<title>Additional data.</title>
+
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <meta name="theme-color" content="#009a9f">
+
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
+</head>
+
+<body>
+
+    <div class="container menu page-header">
+
+    <h1>Additional employee data entry.<br/></h1>
+
+    </div>
+
+    <div class="container menu">
+
+    <p>Entry of any additional Employee details can be done below.<br/></p>
+
+    <form method="post" action="/additional_data/additional_employee_data/additional_employee_data.php">
+
+        <label for="eid">EID:</label>
+
+        <input type="number" maxlength="10" id="eid" name="eid" placeholder="eid">
+
+        <br/>
+
+        <label for="secondary_phoneno">Secondary Phone number:</label>
+
+        <input type="number" maxlength="10" id="secondary_phoneno" name="secondary_phoneno" placeholder="Secondary phoneno">
+
+        <br/>
+
+        <label for="aadhar_number">Purpose:</label>
+
+        <input type="number" maxlength="16" id="aadhar_number" name="aadhar_number" placeholder="Aadhar_number">
+
+        <br/>
+
+        <input type="submit" value="Done">
+
+        <br/>
+
+    </form>
+
+    </div>
+
+    <div class="container menu">
+
+        <h3>The additional data of employees can be viewed using the following link.<br/></h3>
+
+        <p><a href="/additional_data/additional_employee_data/view_additional_employee_data.php">View additional employee data</a></p>
+
+        </div>
+
+        <div class="container menu">
+
+        <h3>The additional data of the clients can also be deleted using the following field.<br/></h3>
+
+        <p>Enter the EID of the Employee whose data you want to delete.<br/></p>
+
+        <form method="post" action="/additional_data/additional_employee_data/delete_additional_employee_data.php">
+
+            <label for="eid">EID:</label>
+
+            <input type="number" maxlength="10" id="eid" name="eid" placeholder="EID">
+
+            <br/>
+
+            <input type="submit" value="Done">
+
+            <br/>
+
+        </form>
+
+        </div>
+
+        <div class="container menu">
+    
+    <h1>The additional data of the employees can be updated using the following facility.<br/></h1>
+
+    <p>Just select the field you want to update from the dropdown and the EID of the particular employee and the data that has to be reflected and proceed. The data will be reflected immediately.<br/></p>
+
+    <form method="POST" action="/additional_data/additional_employee_data/update_additional_employee_data.php">
+
+        <label for="sel">Update:</label>
+
+        <select id="sel" name="sel">
+
+            <option value="Secondary_phoneno">Secondary Phone Number</option>
+
+            <option value="Aadhar_number">Aadhar number</option>
+
+        </select>
+
+        <br/>
+
+        <label for="id">EID to update:</label>
+
+        <input type="number" name="id" maxlength="10" placeholder="EID" id="id">
+
+        <br/>
+
+        <label for="value">Updated value:</label>
+
+        <input type="text" placeholder="Value" name="val" maxlength="16" id="value">
+
+        <input type="submit" value="Done">
+
+        <br/>
+
+    </form>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
