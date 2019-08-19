@@ -1,16 +1,16 @@
 body{
 
-    background-color: #80c8bc;
+    background-color: #DEF2F1;
 
-    color: #e27d5f;
+    color: #FEFFFF;
 
     text-align: center;
 
-    font-family: monospace;
+    font-size: 20px;
 
-    font-size: 18px;
+    /*font-family: monospace;
 
-    /*margin: 0 auto;
+    margin: 0 auto;
 
     width: 800px;*/
 
@@ -18,7 +18,7 @@ body{
 
 h1,h2,h3,h4{
 
-    color: #e27d5f;
+    color: #FEFFFF;
 
 }
 
@@ -28,9 +28,9 @@ input,select{
 
     border-style: solid;
 
-    border-color: #e27d5f;
+    border-color: #FEFFFF;
 
-    color: #caf6f4;
+    color: #17252A;
 
     font-size: 20px;
 
@@ -48,7 +48,7 @@ input,select{
 
 input::placeholder{
 
-    color: #caf6f4;
+    color: #17252A;
 
     text-align: center;
 
@@ -76,13 +76,13 @@ ul{
 
 .button{
 
-    color: #caf6f4;
+    color: #17252A;
 
 }
 
 a{
 
-    color: #caf6f4;
+    color: #17252A;
 
     text-decoration: none;
 
@@ -90,15 +90,15 @@ a{
 
 a:visited{
 
-    color: #caf6f4;
+    color: #17252A;
 
 }
 
 textarea{
 
-    background-color: #e27d5f;
+    background-color: #FEFFFF;
 
-    color: #caf6f4;
+    color: #17252A;
 
 }
 
