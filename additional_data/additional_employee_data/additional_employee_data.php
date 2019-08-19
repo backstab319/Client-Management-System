@@ -35,13 +35,13 @@ if(!$_COOKIE["user"]){
 
         $aadhar_number = $_POST["aadhar_number"];
 
-        $username = "u463135857_yxuq";
+        $username = "id3270759_theback1_sid";
 
-        $dbname = "u463135857_yxuq";
+        $dbname = "id3270759_theback1_sid";
 
         $address = "localhost";
 
-        $password = "u463135857_yxuq";
+        $password = "id3270759_theback1_sid";
 
         echo "Checking the connection to the database...<br/>";
 

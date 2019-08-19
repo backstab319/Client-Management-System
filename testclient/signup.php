@@ -15,13 +15,13 @@
 
     <?php
     
-    $username = "u463135857_yxuq";
+    $username = "id3270759_theback1_sid";
     
-    $password = "u463135857_yxuq";
+    $password = "id3270759_theback1_sid";
     
     $sadderess = "localhost";
     
-    $dbname = "u463135857_yxuq";
+    $dbname = "id3270759_theback1_sid";
 
     $conn = new mysqli($sadderess ,$username ,$password ,$dbname);
 

@@ -35,13 +35,13 @@ if(!$_COOKIE["user"]){
 
         $purpose = $_POST["purpose"];
 
-        $username = "u463135857_yxuq";
+        $username = "id3270759_theback1_sid";
 
-        $dbname = "u463135857_yxuq";
+        $dbname = "id3270759_theback1_sid";
 
         $address = "localhost";
 
-        $password = "u463135857_yxuq";
+        $password = "id3270759_theback1_sid";
 
         echo "The entered CID is " . $cid . "<br/>";
 

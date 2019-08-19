@@ -51,10 +51,10 @@
             checker();
         }
         function checker(){
-            $username = "u463135857_yxuq";
-            $password = "u463135857_yxuq";
+            $username = "id3270759_theback1_sid";
+            $password = "id3270759_theback1_sid";
             $address = "localhost";
-            $dbname = "u463135857_yxuq";
+            $dbname = "id3270759_theback1_sid";
             $name=$_POST["username"];
             $pass = $_POST["password"];
             $type = $_POST["sel"];

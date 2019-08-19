@@ -29,13 +29,13 @@ if(!$_COOKIE["user"]){
 
 }
 
-$username = "u463135857_yxuq";
+$username = "id3270759_theback1_sid";
 
-$password = "u463135857_yxuq";
+$password = "id3270759_theback1_sid";
 
 $sadderss = "localhost";
 
-$dbname = "u463135857_yxuq";
+$dbname = "id3270759_theback1_sid";
 
 echo "Checking the connection to the database...<br/>";
 

@@ -71,13 +71,13 @@ if(!$_COOKIE["user"]){
 
         if($_POST["change"]){
 
-            $username = "u463135857_yxuq";
+            $username = "id3270759_theback1_sid";
 
-            $password = "u463135857_yxuq";
+            $password = "id3270759_theback1_sid";
 
             $address = "localhost";
 
-            $dbname = "u463135857_yxuq";
+            $dbname = "id3270759_theback1_sid";
 
             $name = $_COOKIE["user"];
 
