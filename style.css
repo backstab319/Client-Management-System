@@ -1,4 +1,14 @@
-body{
+.background{
+    background-image: url("https://www.clickfew.com/wp-content/uploads/2018/12/project_management.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 1080px;
+}
+.overlay{
+    background: rgba(0,0,0,0.1);
+    background-repeat: no-repeat;
+}
+/*body{
 
     background-color: #DEF2F1;
 
@@ -8,11 +18,11 @@ body{
 
     font-size: 20px;
 
-    /*font-family: monospace;
+    font-family: monospace;
 
     margin: 0 auto;
 
-    width: 800px;*/
+    width: 800px;
 
 }
 
@@ -141,4 +151,4 @@ iframe{
     padding: 5px;
     margin-bottom: 10px;
     margin-top: 10px;
-}
+}*/

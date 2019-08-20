@@ -15,7 +15,7 @@
     </head>
 
 <body>
-    <div class="welcome container">
+    <div class="container">
 
 <h1>Pages:</h1>
 
