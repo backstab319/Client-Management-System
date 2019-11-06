@@ -44,37 +44,37 @@
 
         <div class="container">
 
-    <a href="/client_data/client_data.php">Client data</a>
+    <a class='btn btn-outline-primary my-1' href="/client_data/client_data.php">Client data</a>
 
         </div>
 
         <div class="container">
 
-    <a href="/additional_data/additional_data(emp).html">Available additional data</a>
+    <a class='btn btn-outline-primary my-1' href="/additional_data/additional_data(emp).html">Available additional data</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/testclient/testclient_display.php">Test clients</a>
+    <a class='btn btn-outline-primary my-1' href="/testclient/testclient_display.php">Test clients</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/allot(emp).php">Allot</a>
+    <a class='btn btn-outline-primary my-1' href="/allot(emp).php">Allot</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/talk.php">Talk</a>
+    <a class='btn btn-outline-primary my-1' href="/talk.php">Talk</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/change.php">Change Password</a>
+    <a class='btn btn-outline-primary my-1' href="/change.php">Change Password</a>
 
     </div>
 

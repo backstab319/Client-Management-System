@@ -35,9 +35,9 @@ if(!$_COOKIE["user"]){
 
     $val = $_POST["val"];
 
-    $username = "id3270759_theback1_sid";
+    $username = "root";
 
-    $password = "id3270759_theback1_sid";
+    $password = "";
 
     $address = "localhost";
 

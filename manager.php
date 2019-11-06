@@ -47,49 +47,49 @@
 
     <div class="container">
 
-    <a href="/client_data/client_data.php">Client data</a>
+    <a class='btn btn-outline-primary my-1' href="/client_data/client_data.php">Client data</a>
 
     </div>
 
     <div class="container">
 
-    <a href="/emp_data/emp_data.php">Employee data</a>
+    <a class='btn btn-outline-primary my-1' href="/emp_data/emp_data.php">Employee data</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/additional_data/additional_data_of_client.html">Available additional data of client</a>
+    <a class='btn btn-outline-primary my-1' href="/additional_data/additional_data_of_client.html">Available additional data of client</a>
 
 </div>
 
 <div class="container">
 
-    <a href="/additional_data/additional_data_of_emp.html">Available additional data of employees</a>
+    <a class='btn btn-outline-primary my-1' href="/additional_data/additional_data_of_emp.html">Available additional data of employees</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/testclient/testclient_display.php">Test clients</a>
+    <a class='btn btn-outline-primary my-1' href="/testclient/testclient_display.php">Test clients</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/allot.php">Allot customer's</a>
+    <a class='btn btn-outline-primary my-1' href="/allot.php">Allot customer's</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/talk.php">Talk</a>
+    <a class='btn btn-outline-primary my-1' href="/talk.php">Talk</a>
 
     </div>
 
 <div class="container">
 
-    <a href="/change.php">Change Password</a>
+    <a class='btn btn-outline-primary my-1' href="/change.php">Change Password</a>
 
     </div>
 

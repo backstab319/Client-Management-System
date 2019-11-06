@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
 <?php
-    $username = "id3270759_theback1_sid";
+    $username = "root";
 
-    $password = "id3270759_theback1_sid";
+    $password = "";
 
     $address = "localhost";
 
@@ -57,7 +57,7 @@
         <input type="submit" name="allot" value="Allot">
     </form>
     <?php
-        if($_POST["allot"]){
+        if(isset($_POST["allot"])){
             $client = $_POST["client"];
             $emp = $_POST["emp"];
             $sql = "INSERT INTO relation VALUES('$emp','$client')";
@@ -98,7 +98,7 @@
         <input type="submit" value="Search" name="searchemp">
     </form>
     <?php
-        if($_POST["searchemp"]){
+        if(isset($_POST["searchemp"])){
             $empname = $_POST["empsearch"];
             $sql = "SELECT * FROM relation WHERE empname='$empname'";
             $result = $conn->query($sql);
@@ -126,7 +126,7 @@
             <input type="submit" value="Search" name="searchclient">
         </form>
         <?php
-        if($_POST["searchclient"]){
+        if(isset($_POST["searchclient"])){
             $clientname = $_POST["clientsearch"];
             $sql = "SELECT * FROM relation WHERE clientname='$clientname'";
             $result = $conn->query($sql);
@@ -191,7 +191,7 @@
         </select>
     </form>
     <?php
-    if($_POST["deallocate"]){
+    if(isset($_POST["deallocate"])){
         $delclient = $_POST["delclient"];
         $delemp = $_POST["delemp"];
         $sql = "SELECT * FROM relation WHERE empname='$delemp' AND clientname='$delclient'";

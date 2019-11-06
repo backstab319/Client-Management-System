@@ -1,5 +1,5 @@
 <?php
-    if($_POST["s"]){
+    if(isset($_POST["s"])){
         $name = $_POST["username"];
         setcookie("user",$name,time()+(14400),'/');
     }
@@ -49,12 +49,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <?php
-    if($_POST["s"]){
+    if(isset($_POST["s"])){
         checker();
     }
     function checker(){
-        $username = "id3270759_theback1_sid";
-        $password = "id3270759_theback1_sid";
+        $username = "root";
+        $password = "";
         $address = "localhost";
         $dbname = "id3270759_theback1_sid";
         $name=$_POST["username"];

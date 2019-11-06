@@ -15,9 +15,9 @@
 
     <?php
     
-    $username = "id3270759_theback1_sid";
+    $username = "root";
     
-    $password = "id3270759_theback1_sid";
+    $password = "";
     
     $sadderess = "localhost";
     
@@ -65,13 +65,19 @@
 
     <br/>
 
-    <input type="submit" value="Sign up!" name="signup">
+    <div class="d-flex flex-row justify-content-center align-items-center">
+
+        <input type="submit" value="Sign up!" name="signup">
+
+        <a class='btn btn-outline-primary' href='../index.php'>Main Page</a>
+        
+    </div>
 
     </form>
 
     <?php
 
-        if($_POST["signup"]){
+        if(isset($_POST["signup"])){
 
             $username1 = $_POST["username1"];
 

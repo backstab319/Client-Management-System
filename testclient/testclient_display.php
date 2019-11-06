@@ -29,15 +29,15 @@ if(!$_COOKIE["user"]){
 
 }
 
-$username = "id3270759_theback1_sid";
+$username = "root";
 
-$password = "id3270759_theback1_sid";
+$password = "";
 
 $sadderss = "localhost";
 
 $dbname = "id3270759_theback1_sid";
 
-$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+$conn = new mysqli($sadderss ,$username ,$password ,$dbname);
 
 if($conn->connect_error){
 
@@ -87,7 +87,7 @@ if($result->num_rows > 0){
 
 <?php
 
-    if($_POST["del"]){
+    if(isset($_POST["del"])){
 
         $cname = $_POST["cname"];
 

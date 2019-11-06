@@ -69,11 +69,11 @@ if(!$_COOKIE["user"]){
 
     <?php
 
-        if($_POST["change"]){
+        if(isset($_POST["change"])){
 
-            $username = "id3270759_theback1_sid";
+            $username = "root";
 
-            $password = "id3270759_theback1_sid";
+            $password = "";
 
             $address = "localhost";
 
@@ -146,8 +146,6 @@ if(!$_COOKIE["user"]){
             }
 
         }
-
-    $conn->close();
 
     ?>
 

@@ -4,9 +4,9 @@
 
     $user = $_COOKIE["user"];
 
-    $username = "id3270759_theback1_sid";
+    $username = "root";
 
-    $password = "id3270759_theback1_sid";
+    $password = "";
 
     $address = "localhost";
 
@@ -66,13 +66,13 @@
 
     <div class="container">
 
-    <a href="/talk.php">Talk</a><br/>
+    <a class='btn btn-outline-primary my-1' href="/talk.php">Talk</a><br/>
 
     </div>
 
     <div class="container">
 
-    <a href="/change.php">Change Password</a>
+    <a class='btn btn-outline-primary my-1' href="/change.php">Change Password</a>
 
     </div>
 

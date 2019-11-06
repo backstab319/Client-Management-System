@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
 <?php
-    $username = "id3270759_theback1_sid";
+    $username = "root";
 
-    $password = "id3270759_theback1_sid";
+    $password = "";
 
     $address = "localhost";
 
@@ -50,7 +50,7 @@
         <input type="submit" name="allot" value="Allot">
     </form>
     <?php
-        if($_POST["allot"]){
+        if(isset($_POST["allot"])){
             $client = $_POST["client"];
             $emp = $_POST["emp"];
             $sql = "INSERT INTO relation VALUES('$user','$client')";
@@ -102,7 +102,7 @@
         <input type="submit" value="Remove" name="remove">
     </form>
     <?php
-        if($_POST["remove"]){
+        if(isset($_POST["remove"])){
             $client = $_POST["client"];
             $sql = "DELETE FROM relation WHERE empname='$user' AND clientname='$client'";
             if($conn->query($sql) == TRUE){

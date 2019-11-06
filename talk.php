@@ -20,19 +20,15 @@
 
     <?php
 
-        $username = "id3270759_theback1_sid";
+        $username = "root";
 
-        $password = "id3270759_theback1_sid";
+        $password = "";
 
         $address = "localhost";
 
         $dbname = "id3270759_theback1_sid";
 
-        $receiver = $_POST["receiver"];
-
         $user = $_COOKIE["user"];
-
-        $message = $_POST["message"];
 
         $conn = new mysqli( $address, $username, $password, $dbname);
 
@@ -156,7 +152,11 @@
 
     <?php
 
-        if($_POST["mess"]){
+        if(isset($_POST["mess"])){
+
+            $receiver = $_POST["receiver"];
+
+            $message = $_POST["message"];
 
             if($_COOKIE["user"] == "manager"){
 

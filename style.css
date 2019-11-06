@@ -1,48 +1,34 @@
-.background{
-    background-image: url("https://www.clickfew.com/wp-content/uploads/2018/12/project_management.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 1080px;
-}
-.overlay{
-    background: rgba(0,0,0,0.1);
-    background-repeat: no-repeat;
-}
-/*body{
+body{
 
-    background-color: #DEF2F1;
+    background-color: #80c8bc;
 
-    color: #FEFFFF;
+    color: #e27d5f;
 
     text-align: center;
 
-    font-size: 20px;
-
     font-family: monospace;
 
-    margin: 0 auto;
+    font-size: 18px;
 
-    width: 800px;
+    /*margin: 0 auto;
+
+    width: 800px;*/
 
 }
 
 h1,h2,h3,h4{
 
-    color: #FEFFFF;
+    color: #e27d5f;
 
 }
 
 input,select{
 
-    border: 2px;
-
-    border-style: solid;
-
-    border-color: #FEFFFF;
-
-    color: #17252A;
+    color: #caf6f4;
 
     font-size: 20px;
+
+    border: 0px;
 
     border-radius: 15px;
 
@@ -58,7 +44,7 @@ input,select{
 
 input::placeholder{
 
-    color: #17252A;
+    color: #caf6f4;
 
     text-align: center;
 
@@ -86,13 +72,13 @@ ul{
 
 .button{
 
-    color: #17252A;
+    color: #C5C6C7;
 
 }
 
 a{
 
-    color: #17252A;
+    color: #c38d9d;
 
     text-decoration: none;
 
@@ -100,15 +86,15 @@ a{
 
 a:visited{
 
-    color: #17252A;
+    color: #c38d9d;
 
 }
 
 textarea{
 
-    background-color: #FEFFFF;
+    background-color: #e27d5f;
 
-    color: #17252A;
+    color: #caf6f4;
 
 }
 
@@ -123,32 +109,3 @@ iframe{
     padding: 30px;
     border-width: 0px;
 }
-
-@media only screen and (max-width: 600px){
-    table{
-    
-        width: 100%;
-    }
-    td{
-        text-overflow: ellipsis;
-        word-wrap: break-word;
-        overflow: hidden;
-    }
-}
-.container{
-    padding: 10px;
-    border-width: 1px;
-    border-radius: 10px;
-}
-.menu{
-    background-color: #40b3a2;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-.welcome{
-    border-width: 1px;
-    background-color: #40b3a2;
-    padding: 5px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}*/

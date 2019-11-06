@@ -29,9 +29,9 @@ if(!$_COOKIE["user"]){
 
 }
 
-$username = "id3270759_theback1_sid";
+$username = "root";
 
-$password = "id3270759_theback1_sid";
+$password = "";
 
 $sadderss = "localhost";
 
@@ -41,7 +41,7 @@ $id = $_POST["ID"];
 
 echo "Checking the connection to the database...<br/>";
 
-$conn = new mysqli($saddress ,$username ,$password ,$dbname);
+$conn = new mysqli($sadderss ,$username ,$password ,$dbname);
 
 if($conn->connect_error){
 

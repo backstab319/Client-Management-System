@@ -8,19 +8,19 @@ if(!$_COOKIE["user"]){
 
 }
 
-    $username = "id3270759_theback1_sid";
+    $username = "root";
 
-    $password = "id3270759_theback1_sid";
+    $password = "";
 
     $address = "localhost";
 
     $dbname = "id3270759_theback1_sid";
 
-    $receiver = $_POST["receiver"];
+    $receiver = isset($_POST["receiver"]);
 
     $user = $_COOKIE["user"];
 
-    $message = $_POST["message"];
+    $message = isset($_POST["message"]);
 
     $conn = new mysqli( $address, $username, $password, $dbname);
 
