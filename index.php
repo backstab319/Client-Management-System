@@ -17,6 +17,9 @@
 <div class="background d-flex align-items-start justify-content-center">
 <div class="overlay mt-5">
 <div class="container-fluid">
+<div class="container-fluid">
+    <h1 class="heading-1">Client Management System</h1>
+</div>
 <div class="container text-center">
         <h1 class="heading-1"> Login: </h1>
 </div>
